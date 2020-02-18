@@ -10,9 +10,9 @@
 
 <body>
     <div id="app">
+        <p v-once>{{title}}</p>
         <p>{{title}} <a v-bind:href="link">Google</a></p>
         <p>{{sayHello()}}</p>
-
     </div>
 </body>
 <script>
@@ -24,7 +24,8 @@
         },
         methods: {
             sayHello: function () {
-                return this.title + 'World!';
+                this.title = 'Good Morning';
+                return this.title + ' World!';
             }
         }
     })
