@@ -13,6 +13,7 @@
         <p v-once>{{title}}</p>
         <p>{{title}} <a v-bind:href="link">Google</a></p>
         <p>{{sayHello()}}</p>
+        <p v-html="linkHTML"></p>
     </div>
 </body>
 <script>
@@ -20,7 +21,8 @@
         el: '#app',
         data: {
             title: 'Hello',
-            link: 'http://google.com'
+            link: 'http://google.com',
+            linkHTML: '<a href="http://google.com">Google</a>'
         },
         methods: {
             sayHello: function () {
