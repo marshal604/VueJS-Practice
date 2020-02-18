@@ -11,6 +11,8 @@
 <body>
     <div id="app">
         <p>{{title}}</p>
+        <p>{{sayHello()}}</p>
+
     </div>
 </body>
 <script>
@@ -18,6 +20,11 @@
         el: '#app',
         data: {
             title: 'Hello'
+        },
+        methods: {
+            sayHello: function () {
+                return this.title + 'World!';
+            }
         }
     })
 </script>
