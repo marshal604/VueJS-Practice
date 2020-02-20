@@ -14,7 +14,7 @@
         <p>{{title}} <a v-bind:href="link">Google</a></p>
         <p>{{sayHello()}}</p>
         <p v-html="linkHTML"></p>
-        <button v-on:click="increaseCounter">counter++</button>
+        <button v-on:click="increaseCounter($event, 2)">counter++</button>
         <p>counter: {{counter}}</p>
     </div>
 </body>
@@ -32,8 +32,8 @@
                 this.title = 'Good Morning';
                 return this.title + ' World!';
             },
-            increaseCounter: function () {
-                this.counter++;
+            increaseCounter: function (event, step) {
+                this.counter += step;
             }
         }
     })
