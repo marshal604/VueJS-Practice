@@ -16,6 +16,8 @@
         <p v-html="linkHTML"></p>
         <button v-on:click="increaseCounter($event, 2)">counter++</button>
         <p>counter: {{counter}}</p>
+        <button v-on:click="alertMsg()">[ click me to alert ] <span v-on:click.stop>[ click me will no alert
+                ]</span></button>
     </div>
 </body>
 <script>
@@ -34,6 +36,9 @@
             },
             increaseCounter: function (event, step) {
                 this.counter += step;
+            },
+            alertMsg: function () {
+                alert('alert');
             }
         }
     })
