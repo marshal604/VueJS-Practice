@@ -37,6 +37,10 @@
             <p v-if="greetingType === 1">Hello!</p>
             <p v-else-if="greetingType === 2">Hola!</p>
             <p v-else>O-Hi-Yo!</p>
+            <template v-if="greetingType === 1">
+                <p>-------</p>
+                <p>Hello!</p>
+            </template>
             <button @click="changeGreeting">Switch Greeting</button>
         </div>
     </div>
