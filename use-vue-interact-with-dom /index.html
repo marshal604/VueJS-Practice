@@ -11,15 +11,15 @@
 <body>
     <div id="app">
         <p v-once>{{title}}</p>
-        <p>{{title}} <a v-bind:href="link">Google</a></p>
+        <p>{{title}} <a :href="link">Google</a></p>
         <p>{{sayHello()}}</p>
         <p v-html="linkHTML"></p>
-        <button v-on:click="increaseCounter($event, 2)">counter++</button>
+        <button @click="increaseCounter($event, 2)">counter++</button>
         <p>counter: {{counter}}</p>
-        <button v-on:click="alertMsg()">[ click me to alert ] <span v-on:click.stop>[ click me will no alert
+        <button @click="alertMsg()">[ click me to alert ] <span @click.stop>[ click me will no alert
                 ]</span></button>
         <div>
-            <input type="text" v-on:keyup.enter.space.a="alertMsg()">
+            <input type="text" @keyup.enter.space.a="alertMsg()">
         </div>
         <div>
             <p>Two-Way Binding</p>
