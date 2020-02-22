@@ -5,14 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="style.css">
     <title>VueJS</title>
 </head>
 
 <body>
     <div id="app">
-        <p v-once>{{title}}</p>
-        <p>{{title}} <a :href="link">Google</a></p>
-        <p>{{sayHello()}}</p>
+        <p v-once :class="['color-red', 'bg-pink']">{{title}}</p>
+        <p :style="['color: red;', {background: 'gray'}]">{{title}} <a :href="link">Google</a></p>
+        <p :class="sayHelloClass">{{sayHello()}}</p>
+        <button @click="useRedColor = !useRedColor">change color</button>
         <p v-html="linkHTML"></p>
         <button @click="increaseCounter($event, 2)">counter++</button>
         <p>counter: {{counter}}</p>
@@ -40,12 +42,19 @@
             link: 'http://google.com',
             linkHTML: '<a href="http://google.com">Google</a>',
             counter: 0,
-            twoWayBindingValue: 'two-way binding'
+            twoWayBindingValue: 'two-way binding',
+            useRedColor: false
         },
         computed: {
             computedResult: function () {
                 console.log('trigger computedResult');
                 return this.counter > 5 ? '> 5' : '<= 5';
+            },
+            sayHelloClass: function () {
+                return {
+                    'color-red': this.useRedColor,
+                    'color-blue': !this.useRedColor
+                };
             }
         },
         watch: {
