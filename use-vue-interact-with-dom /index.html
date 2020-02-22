@@ -48,6 +48,13 @@
                 return this.counter > 5 ? '> 5' : '<= 5';
             }
         },
+        watch: {
+            counter: function (value) {
+                setTimeout(() => {
+                    this.counter = 0;
+                }, 2000);
+            }
+        },
         methods: {
             sayHello: function () {
                 this.title = 'Good Morning';
@@ -63,7 +70,7 @@
                 console.log('trigger result');
                 return this.counter > 5 ? '> 5' : '<= 5';
             }
-        }
+        },
     })
 </script>
 
