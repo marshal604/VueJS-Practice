@@ -44,6 +44,12 @@
             <p v-show="greetingType === 1">Show - Hello!</p>
             <button @click="changeGreeting">Switch Greeting</button>
         </div>
+        <div>
+            <h3>List</h3>
+            <ul>
+                <li v-for="(fruit, order) in fruitList">{{order}}. {{fruit}}</li>
+            </ul>
+        </div>
     </div>
 </body>
 <script>
@@ -56,7 +62,8 @@
             counter: 0,
             twoWayBindingValue: 'two-way binding',
             useRedColor: false,
-            greetingType: 1
+            greetingType: 1,
+            fruitList: ['apple', 'banana', 'watermelon']
         },
         computed: {
             computedResult: function () {
