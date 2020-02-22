@@ -26,6 +26,10 @@
             <input type="text" v-model="twoWayBindingValue">
             <p>{{twoWayBindingValue}}</p>
         </div>
+        <div>
+            <h3>Computed</h3>
+            <div>{{ result() }} | {{ computedResult}}</div>
+        </div>
     </div>
 </body>
 <script>
@@ -38,6 +42,12 @@
             counter: 0,
             twoWayBindingValue: 'two-way binding'
         },
+        computed: {
+            computedResult: function () {
+                console.log('trigger computedResult');
+                return this.counter > 5 ? '> 5' : '<= 5';
+            }
+        },
         methods: {
             sayHello: function () {
                 this.title = 'Good Morning';
@@ -48,6 +58,10 @@
             },
             alertMsg: function () {
                 alert('alert');
+            },
+            result: function () {
+                console.log('trigger result');
+                return this.counter > 5 ? '> 5' : '<= 5';
             }
         }
     })
