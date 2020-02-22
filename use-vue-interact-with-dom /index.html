@@ -21,6 +21,11 @@
         <div>
             <input type="text" v-on:keyup.enter.space.a="alertMsg()">
         </div>
+        <div>
+            <p>Two-Way Binding</p>
+            <input type="text" v-model="twoWayBindingValue">
+            <p>{{twoWayBindingValue}}</p>
+        </div>
     </div>
 </body>
 <script>
@@ -30,7 +35,8 @@
             title: 'Hello',
             link: 'http://google.com',
             linkHTML: '<a href="http://google.com">Google</a>',
-            counter: 0
+            counter: 0,
+            twoWayBindingValue: 'two-way binding'
         },
         methods: {
             sayHello: function () {
