@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>VueJS</title>
+</head>
+
+<body>
+    <div id="app">
+        <p v-once :class="['color-red', 'bg-pink']">{{title}}</p>
+        <p :style="['color: red;', {background: 'gray'}]">{{title}} <a :href="link">Google</a></p>
+        <p :class="sayHelloClass">{{sayHello()}}</p>
+        <button @click="useRedColor = !useRedColor">change color</button>
+        <p v-html="linkHTML"></p>
+        <button @click="increaseCounter($event, 2)">counter++</button>
+        <p>counter: {{counter}}</p>
+        <button @click="alertMsg()">[ click me to alert ] <span @click.stop>[ click me will no alert
+                ]</span></button>
+        <div>
+            <input type="text" @keyup.enter.space.a="alertMsg()">
+        </div>
+        <div>
+            <p>Two-Way Binding</p>
+            <input type="text" v-model="twoWayBindingValue">
+            <p>{{twoWayBindingValue}}</p>
+        </div>
+        <div>
+            <h3>Computed</h3>
+            <div>{{ result() }} | {{ computedResult}}</div>
+        </div>
+        <div>
+            <h3>Condition</h3>
+            <p v-if="greetingType === 1">Hello!</p>
+            <p v-else-if="greetingType === 2">Hola!</p>
+            <p v-else>O-Hi-Yo!</p>
+            <template v-if="greetingType === 1">
+                <p>-------</p>
+                <p>Hello!</p>
+            </template>
+            <p v-show="greetingType === 1">Show - Hello!</p>
+            <button @click="changeGreeting">Switch Greeting</button>
+        </div>
+        <div>
+            <h3>List</h3>
+            <ul>
+                <li v-for="(fruit, order) in fruitList">{{order}}. {{fruit}}</li>
+            </ul>
+            <template v-for="(fruit, order) in fruitList">
+                <p>{{order}}.</p>
+                <h5>{{fruit}}</h5>
+            </template>
+            <div>
+                <span v-for="n in 10">{{n}}</span>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            title: 'Hello',
+            link: 'http://google.com',
+            linkHTML: '<a href="http://google.com">Google</a>',
+            counter: 0,
+            twoWayBindingValue: 'two-way binding',
+            useRedColor: false,
+            greetingType: 1,
+            fruitList: ['apple', 'banana', 'watermelon']
+        },
+        computed: {
+            computedResult: function () {
+                console.log('trigger computedResult');
+                return this.counter > 5 ? '> 5' : '<= 5';
+            },
+            sayHelloClass: function () {
+                return {
+                    'color-red': this.useRedColor,
+                    'color-blue': !this.useRedColor
+                };
+            }
+        },
+        watch: {
+            counter: function (value) {
+                setTimeout(() => {
+                    this.counter = 0;
+                }, 2000);
+            }
+        },
+        methods: {
+            sayHello: function () {
+                this.title = 'Good Morning';
+                return this.title + ' World!';
+            },
+            increaseCounter: function (event, step) {
+                this.counter += step;
+            },
+            alertMsg: function () {
+                alert('alert');
+            },
+            result: function () {
+                console.log('trigger result');
+                return this.counter > 5 ? '> 5' : '<= 5';
+            },
+            changeGreeting: function () {
+                this.greetingType = parseInt(Math.random() * 3 + 1, 10);
+            }
+        },
+    })
+</script>
+
+</html>
